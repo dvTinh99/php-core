@@ -1,11 +1,6 @@
 <?php 
 
-$controllers = scandir('../Controllers', SCANDIR_SORT_DESCENDING);
 
-// foreach ($controllers as $controller) {
-//     require('./Controllers/'.$controller);
-//     // $
-// }
 require './Controllers/UsersController.php';
 
 switch ($method | $uri) {
