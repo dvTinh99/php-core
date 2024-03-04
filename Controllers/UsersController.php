@@ -1,12 +1,26 @@
 <?php 
 
-class UsersController {
+class UsersController extends Controller{
     
     public static function getAll() {
-        echo 'get all in controller';
+        echo self::returnSuccess('get all in controller');
     }
 
     public static function detail($id) {
-        echo "get detail id {$id} in controller";
+        echo self::returnSuccess("get detail id {$id} in controller");
+    }
+
+    public function register() {
+        $data = [
+            "name" => "tinh doan"
+        ];
+        return $this->loadView('user_register', $data);
+    }
+
+    public function login() {
+        $data = [
+            "name" => "tinh doan"
+        ];
+        return $this->loadView('user_login', $data);
     }
 }

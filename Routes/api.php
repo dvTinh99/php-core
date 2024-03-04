@@ -1,9 +1,8 @@
 <?php 
 
 
-require './Controllers/UsersController.php';
-
 switch ($method | $uri) {
+    
     /*
     * Path: GET /api/users
     * Task: show all the users
@@ -24,7 +23,7 @@ switch ($method | $uri) {
     * Task: store one user
     */
     case ($method == 'POST' && $uri == '/api/users'):
-        echo 'create';
+        // echo 'create';
         break;
     /*
     * Path: PUT /api/users/{id}
@@ -46,6 +45,6 @@ switch ($method | $uri) {
     *      throw an error
     */
     default:
-        echo 'default';
+        echo 'api not found';
         break;
  }
