@@ -1,9 +1,16 @@
 <?php 
 
 class UsersController extends Controller{
+
+    protected $User;
+
+    public function __construct() {
+        
+        $this->loadModel('User');
+    }
     
-    public static function getAll() {
-        echo self::returnSuccess('get all in controller');
+    public function getAll() {
+        echo $this->returnSuccess($this->User->getAll());
     }
 
     public static function detail($id) {

@@ -9,5 +9,18 @@ foreach ($cores as $value) {
         require './Core/' . $value;
     };
 }
+
+$configsAutoload = scandir('./Configs', SCANDIR_SORT_ASCENDING);
+
+foreach ($configsAutoload as $value) {
+    if (is_file('./Configs/' . $value)) {
+        require './Configs/' . $value;
+    };
+}
+
+//load db connect
+$databaseConnect = ucfirst($configs['database']['connection']).'Connection';
+require './Database/' . $databaseConnect .'.php';
+$GLOBALS["database"] = new $databaseConnect();
 require 'Routes/routes.php';
 ?>

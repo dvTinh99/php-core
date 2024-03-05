@@ -8,7 +8,7 @@ switch ($method | $uri) {
     * Task: show all the users
     */
     case ($method == 'GET' && $uri == '/api/users'):
-        UsersController::getAll();
+        $userController->getAll();
         break;
     /*
     * Path: GET /api/users/{id}

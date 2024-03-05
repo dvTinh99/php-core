@@ -18,4 +18,10 @@ class Controller {
         if (count($data) > 0) extract($data);
         require './Views/' . $viewName . '.php';
     }
+
+    public function loadModel($modelName) {
+        $modelName = ucfirst($modelName);
+        require './Models/' . $modelName . '.php';
+        $this->{$modelName} = new $modelName();
+    }
 }
