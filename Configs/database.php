@@ -6,5 +6,6 @@ $configs = [
         'username' => 'root',
         'password' => 'root',
         'connection' => 'mysql',
+        'database' => 'nhan_so_hoc',
     ]
 ];
