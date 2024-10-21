@@ -26,8 +26,8 @@ abstract class Model {
         self::$db = $conn;
     }
 
-    public static function get() {
-        
+    public function get() {
+        return 'model class';
     }
 
     

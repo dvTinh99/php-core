@@ -35,4 +35,9 @@ class UsersController extends Controller{
         $data = $this->User->find(1);
         echo $this->returnSuccess($data);
     }
+
+    public function get() {
+        $data = $this->User->get();
+        echo $this->returnSuccess($data);
+    }
 }
