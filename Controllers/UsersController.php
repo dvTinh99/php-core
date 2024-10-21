@@ -32,7 +32,7 @@ class UsersController extends Controller{
     }
 
     public function logout() {
-        $data = $this->User::find(1);
+        $data = $this->User->find(1);
         echo $this->returnSuccess($data);
     }
 }

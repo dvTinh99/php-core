@@ -1,7 +1,7 @@
 <?php 
 $configs = [
     'database' => [
-        'host' => 'localhost',
+        'host' => '192.168.91.47',
         'port' => '3306',
         'username' => 'root',
         'password' => 'root',
