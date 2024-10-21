@@ -4,6 +4,7 @@ declare(strict_types=1);
 class Router
 {
     private array $routes = [];
+    private $currentIndex;
     public function add(string $method, string $path, array $controller)
     {
         $path = $this->normalizePath($path);
@@ -11,9 +12,18 @@ class Router
             'path' => $path,
             'method' => strtoupper($method),
             'controller' => $controller,
-            'middlewares' => []
+            'middlewares' => [],
+            'name' => null
         ];
+
+        $this->currentIndex = count($this->routes) - 1;
+        return $this;
     }
+
+    public function middleware(array $middlewares) {
+        $this->routes[$this->currentIndex]['middlewares'] = $middlewares;
+    }
+
     private function normalizePath(string $path): string
     {
         $path = trim($path, '/');
@@ -31,6 +41,18 @@ class Router
                 $route['method'] !== $method
             ) {
                 continue;
+            }
+
+            $middlewares = $route['middlewares'];
+
+            foreach($middlewares as $middleware) {
+                $md = new $middleware;
+                $rs = $md->run();
+
+                if (!$rs) {
+                    $md->fallBack();
+                    die();
+                };
             }
 
             [$class, $function] = $route['controller'];
