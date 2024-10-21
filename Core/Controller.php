@@ -21,7 +21,7 @@ class Controller {
 
     public function loadModel($modelName) {
         $modelName = ucfirst($modelName);
-        require './Models/' . $modelName . '.php';
+        require_once './Models/' . $modelName . '.php';
         $this->{$modelName} = new $modelName();
     }
 }

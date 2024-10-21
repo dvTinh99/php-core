@@ -18,9 +18,9 @@ foreach ($configsAutoload as $value) {
     };
 }
 
-//load db connect
-$databaseConnect = ucfirst($configs['database']['connection']).'Connection';
-require './Database/' . $databaseConnect .'.php';
-$GLOBALS["database"] = new $databaseConnect($configs['database']);
+
+// load db connect
+// $databaseConnect = ucfirst($configs['database']['connection']).'Connection';
+// require './Database/' . $databaseConnect .'.php';
+// $GLOBALS["database"] = new $databaseConnect($configs['database']);
 require 'Routes/routes.php';
-?>

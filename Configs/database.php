@@ -6,6 +6,6 @@ $configs = [
         'username' => 'root',
         'password' => 'root',
         'connection' => 'mysql',
-        'database' => 'php_basic',
+        'database' => 'yoosaib001',
     ]
 ];

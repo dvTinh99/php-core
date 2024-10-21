@@ -30,4 +30,9 @@ class UsersController extends Controller{
         ];
         return $this->loadView('user_login', $data);
     }
+
+    public function logout() {
+        $data = $this->User::find(1);
+        echo $this->returnSuccess($data);
+    }
 }
