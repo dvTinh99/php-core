@@ -35,6 +35,7 @@ class Router
     {
         $path = $this->normalizePath($path);
         $method = strtoupper($_SERVER['REQUEST_METHOD']);
+
         foreach ($this->routes as $route) {
             if (
                 !preg_match("#^{$route['path']}$#", $path) ||

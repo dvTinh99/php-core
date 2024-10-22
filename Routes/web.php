@@ -1,4 +1,8 @@
 <?php 
+require './Controllers/UsersController.php';
+require 'Router.php';
+
+$userController = new UsersController();
 
 switch ($method | $uri) {
     case ($method == 'GET' && $uri == '/users/register'):
