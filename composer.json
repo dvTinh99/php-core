@@ -1,0 +1,17 @@
+{
+    "name": "tinhdoan/php-core",
+    "autoload": {
+        "psr-4": {
+            "Tinhdoan\\PhpCore\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "dvtinh99",
+            "email": "tinh.doan@codecomplete.jp"
+        }
+    ],
+    "require": {
+        "phpoffice/phpspreadsheet": "^3.3"
+    }
+}
