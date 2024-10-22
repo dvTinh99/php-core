@@ -83,7 +83,15 @@ abstract class Model {
                 $sql = "INSERT INTO $table ($fillable) VALUES $multiplePlaceHolder";
         
                 $stmt = self::$db->prepare($sql);
-                $stmt->execute(array_merge(...array_values($row)));
+
+                $data = [];
+                foreach ($row as $rowData) {
+                    foreach ($rowData as $rowField) {
+                        $data[] = $rowField;
+                    }
+                }
+
+                $stmt->execute($data);
             }
             self::$db->commit();
         }catch (Exception $e){
