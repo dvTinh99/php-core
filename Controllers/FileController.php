@@ -1,7 +1,7 @@
 <?php 
 
 require_once './autoload/autoload.php';
-
+require_once './Models/User.php';
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx as Reader;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx as Writer;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
@@ -30,6 +30,8 @@ class FileController extends Controller {
                 $rs = $this->readFile($uploaddir . $_FILES['file']['name']);
                 // echo json_encode($rs);
                 // var_dump($rs);
+                $user = new User();
+                $user->insert($rs);
                 echo $this->returnSuccess($rs);
             }
         }
@@ -44,12 +46,13 @@ class FileController extends Controller {
         $result = [];
         
         foreach ($worksheet_arr as $row) {
-            $cell = [];
-            foreach ($row as $cellValue) {
-                // Do something with the cell data here.
-                if (!$cellValue) continue;
-                $cell[] = $cellValue;
-            }
+            if (count($row) == 0) continue;
+            $cell = [$row[1], $row[2]];
+            // foreach ($row as $cellValue) {
+            //     // Do something with the cell data here.
+            //     if (!$cellValue) continue;
+            //     $cell[] = $cellValue;
+            // }
             $result[] = $cell;
         }
 

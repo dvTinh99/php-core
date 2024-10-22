@@ -2,7 +2,9 @@
 
 abstract class Model {
 
+    const CHUNKS_SIZE = 500;
     protected static $db;
+    protected $fillable = [];
     protected $table;
     public function __construct() {
         // load db connect
@@ -67,7 +69,32 @@ abstract class Model {
         return $result;
     }
     
-    public function create($data){}
+    public function insert($datas){
+        
+        $datas = array_chunk($datas, self::CHUNKS_SIZE);
+        $table = $this->table;
+        $fillable = join(',', $this->fillable);
+        $placeHolder = '(' . implode(',', array_fill(0, count($this->fillable), '?')) . ')';
+        try {
+            self::$db->beginTransaction();
+            foreach ($datas as $row)
+            {
+                $multiplePlaceHolder = implode(', ', array_fill(0, count($row), $placeHolder));
+                $sql = "INSERT INTO $table ($fillable) VALUES $multiplePlaceHolder";
+        
+                $stmt = self::$db->prepare($sql);
+                $stmt->execute(array_merge(...array_values($row)));
+            }
+            self::$db->commit();
+        }catch (Exception $e){
+            self::$db->rollback();
+            throw $e;
+        }
+        
+    }
+
+
     public function update($data){}
     public function delete($id){}
+
 }
