@@ -5,6 +5,22 @@ class Router
 {
     private array $routes = [];
     private $currentIndex;
+
+    public function get(string $path, array $controller) {
+        return $this->add('GET', $path, $controller);
+    }
+
+    public function post(string $path, array $controller) {
+        return $this->add('POST', $path, $controller);
+    }
+
+    public function put(string $path, array $controller) {
+        return $this->add('PUT', $path, $controller);
+    }
+
+    public function delete(string $path, array $controller) {
+        return $this->add('DELETE', $path, $controller);
+    }
     public function add(string $method, string $path, array $controller)
     {
         $path = $this->normalizePath($path);
